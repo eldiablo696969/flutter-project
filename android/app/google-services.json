@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "997889859538",
+    "project_id": "elcapitano-proj2-fltter",
+    "storage_bucket": "elcapitano-proj2-fltter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997889859538:android:4f3cdbbf99b174b51ef20b",
+        "android_client_info": {
+          "package_name": "com.example.ireview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997889859538-qkc6sd65ikqu8olcu4tgnti2cd8el0g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkomJ_8Th0DFg07mH-Q3msc-KHSqst428"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997889859538-qkc6sd65ikqu8olcu4tgnti2cd8el0g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
