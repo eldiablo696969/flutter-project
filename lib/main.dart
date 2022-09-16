@@ -16,6 +16,7 @@ void main() {
     routes: {
       '/login/': (context) => const LoginView(),
       '/register/': (context) => const RegisterView(),
+      '/ireview/': (context) => const IReviewView(),
     },
   ));
 }
@@ -63,7 +64,7 @@ class _IReviewViewState extends State<IReviewView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('main ui'),
+          title: const Text('Main UI'),
           actions: [
             PopupMenuButton<MenuAction>(onSelected: (value) async {
               switch (value) {
