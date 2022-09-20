@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ireview/constants/routes.dart';
 import 'package:ireview/firebase_options.dart';
 import 'package:ireview/views/login_view.dart';
 import 'package:ireview/views/register_view.dart';
@@ -14,9 +15,9 @@ void main() {
     theme: ThemeData(primarySwatch: Colors.red),
     home: const HomePage(),
     routes: {
-      '/login/': (context) => const LoginView(),
-      '/register/': (context) => const RegisterView(),
-      '/ireview/': (context) => const IReviewView(),
+      loginRoute: (context) => const LoginView(),
+      registerRoute: (context) => const RegisterView(),
+      ireviewRoute: (context) => const IReviewView(),
     },
   ));
 }
@@ -73,7 +74,7 @@ class _IReviewViewState extends State<IReviewView> {
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/login/', (_) => false);
+                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }
                   break;
               }

@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
+import 'package:ireview/constants/routes.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -30,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: const Text('Login')),
       body: Column(
         children: [
           TextField(
@@ -60,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
                   password: password,
                 );
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/ireview/', (route) => false);
+                    .pushNamedAndRemoveUntil(ireviewRoute, (route) => false);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
                   devtools.log('user not found');
@@ -74,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register/',
+                registerRoute,
                 (route) => false,
               );
             },
