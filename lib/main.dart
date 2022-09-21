@@ -6,7 +6,6 @@ import 'package:ireview/firebase_options.dart';
 import 'package:ireview/views/login_view.dart';
 import 'package:ireview/views/register_view.dart';
 import 'package:ireview/views/verify_email_view.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
