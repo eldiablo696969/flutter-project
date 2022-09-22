@@ -16,7 +16,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
       appBar: AppBar(title: const Text('verify your email address:')),
       body: Column(children: [
         const Text(
-            "we've sent you an Email Verificatio, Please open it to verify your account."),
+            "we've sent you an Email Verification, Please open it to verify your account."),
         const Text(
             "if you haven't recieved a verification email yet, press the button below"),
         TextButton(
