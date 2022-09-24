@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ireview/services/auth/auth_exceptions.dart';
 import 'package:ireview/services/auth/auth_provider.dart';
 import 'package:ireview/services/auth/auth_user.dart';
@@ -76,6 +75,8 @@ void main() {
         email: 'email',
         password: 'password',
       );
+      final user = provider.currentUser;
+      expect(user, isNotNull);
     });
   });
 }
