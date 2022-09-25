@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ireview/constants/routes.dart';
 import 'package:ireview/services/auth/auth_service.dart';
 import 'package:ireview/views/login_view.dart';
-import 'package:ireview/views/notes_view.dart';
+import 'package:ireview/views/notes/notes_view.dart';
+import 'package:ireview/views/notes/new_note_view.dart';
 import 'package:ireview/views/register_view.dart';
 import 'package:ireview/views/verify_email_view.dart';
 
@@ -17,6 +18,7 @@ void main() {
       registerRoute: (context) => const RegisterView(),
       ireviewRoute: (context) => const IReviewView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
+      newNoteRoute: (context) => const NewNotesView(),
     },
   ));
 }
