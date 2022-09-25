@@ -16,9 +16,9 @@ void main() {
     routes: {
       loginRoute: (context) => const LoginView(),
       registerRoute: (context) => const RegisterView(),
-      ireviewRoute: (context) => const IReviewView(),
+      ireviewRoute: (context) => const NotesView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
-      newNoteRoute: (context) => const NewNotesView(),
+      newNoteRoute: (context) => const NewNoteView(),
     },
   ));
 }
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
               final user = AuthService.firebase().currentUser;
               if (user != null) {
                 if (user.isEmailVerified) {
-                  return const IReviewView();
+                  return const NotesView();
                 } else {
                   return const VerifyEmailView();
                 }

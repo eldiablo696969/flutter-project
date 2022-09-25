@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ireview/services/auth/auth_service.dart';
 import 'package:ireview/services/crud/notes_service.dart';
 
-class NewNotesView extends StatefulWidget {
-  const NewNotesView({super.key});
+class NewNoteView extends StatefulWidget {
+  const NewNoteView({Key? key}) : super(key: key);
 
   @override
-  _NewNotesViewState createState() => _NewNotesViewState();
+  _NewNoteViewState createState() => _NewNoteViewState();
 }
 
-class _NewNotesViewState extends State<NewNotesView> {
+class _NewNoteViewState extends State<NewNoteView> {
   DatabaseNote? _note;
   late final NotesService _notesService;
   late final TextEditingController _textController;
@@ -38,7 +38,7 @@ class _NewNotesViewState extends State<NewNotesView> {
     _textController.addListener(_textControllerListener);
   }
 
-  Future<DatabaseNote> createNewnote() async {
+  Future<DatabaseNote> createNewNote() async {
     final existingNote = _note;
     if (existingNote != null) {
       return existingNote;
@@ -82,17 +82,18 @@ class _NewNotesViewState extends State<NewNotesView> {
         title: const Text('New Note'),
       ),
       body: FutureBuilder(
-        future: createNewnote(),
+        future: createNewNote(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
+              _note = snapshot.data as DatabaseNote;
               _setupTextControllerListener();
               return TextField(
                 controller: _textController,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: const InputDecoration(
-                  hintText: 'start typing here...',
+                  hintText: 'Start typing your note...',
                 ),
               );
             default:
