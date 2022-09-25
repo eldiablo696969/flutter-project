@@ -23,12 +23,6 @@ class _IReviewViewState extends State<IReviewView> {
   }
 
   @override
-  void dispose() {
-    _noteService.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -70,7 +64,17 @@ class _IReviewViewState extends State<IReviewView> {
                     switch (snapshot.connectionState) {
                       case ConnectionState.waiting:
                       case ConnectionState.active:
-                        return const Text('waiting for all notes....');
+                        if (snapshot.hasData) {
+                          final allNotes = snapshot.data as List<DatabaseNote>;
+                          return ListView.builder(
+                            itemCount: allNotes.length,
+                            itemBuilder: (context, index) {
+                              return const Text('hello');
+                            },
+                          );
+                        } else {
+                          return const CircularProgressIndicator();
+                        }
                       default:
                         return const CircularProgressIndicator();
                     }
