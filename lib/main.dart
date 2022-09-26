@@ -3,7 +3,7 @@ import 'package:ireview/constants/routes.dart';
 import 'package:ireview/services/auth/auth_service.dart';
 import 'package:ireview/views/login_view.dart';
 import 'package:ireview/views/notes/notes_view.dart';
-import 'package:ireview/views/notes/new_note_view.dart';
+import 'package:ireview/views/notes/create_update_note_view.dart';
 import 'package:ireview/views/register_view.dart';
 import 'package:ireview/views/verify_email_view.dart';
 
@@ -18,7 +18,7 @@ void main() {
       registerRoute: (context) => const RegisterView(),
       ireviewRoute: (context) => const NotesView(),
       verifyEmailRoute: (context) => const VerifyEmailView(),
-      newNoteRoute: (context) => const NewNoteView(),
+      createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
     },
   ));
 }
