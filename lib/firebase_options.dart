@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '997889859538',
     projectId: 'elcapitano-proj2-fltter',
     storageBucket: 'elcapitano-proj2-fltter.appspot.com',
-    iosClientId: '997889859538-taibb35vemldqti2mkfejtst2kmsfei6.apps.googleusercontent.com',
+    iosClientId:
+        '997889859538-taibb35vemldqti2mkfejtst2kmsfei6.apps.googleusercontent.com',
     iosBundleId: 'com.example.ireview',
   );
 }
