@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 typedef DialogOptionbuilder<T> = Map<String, T?> Function();
+
 Future<T?> showGenericDialog<T>({
   required BuildContext context,
   required String title,
