@@ -1,30 +1,61 @@
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:ireview/services/auth/auth_user.dart';
+import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class AuthState {
-  const AuthState();
+  final bool isLoading;
+  final String? loadingtext;
+  const AuthState({
+    required this.isLoading,
+    this.loadingtext = 'please wait',
+  });
 }
 
-class AuthStateLoading extends AuthState {
-  const AuthStateLoading();
+class AuthStateUninitialized extends AuthState {
+  const AuthStateUninitialized({required bool isloading})
+      : super(isLoading: isloading);
+}
+
+class AuthStateRegistering extends AuthState {
+  final Exception? exception;
+  const AuthStateRegistering({required this.exception, required isLoading})
+      : super(isLoading: isLoading);
 }
 
 class AuthStateLoggedIn extends AuthState {
   final AuthUser user;
-  const AuthStateLoggedIn(this.user);
+  const AuthStateLoggedIn({required this.user, required bool isLoading})
+      : super(isLoading: isLoading);
 }
 
 class AuthStateNeedsVerification extends AuthState {
-  const AuthStateNeedsVerification();
+  const AuthStateNeedsVerification({required bool isLoading})
+      : super(isLoading: isLoading);
 }
 
-class AuthStateLoggedOut extends AuthState {
+class AuthStateForgotPassword extends AuthState {
   final Exception? exception;
-  const AuthStateLoggedOut(this.exception);
+  final bool hasSentEmail;
+
+  const AuthStateForgotPassword({
+    required this.exception,
+    required this.hasSentEmail,
+    required bool isLoading,
+  }) : super(isLoading: isLoading);
 }
 
-class AuthStateLogOutFaliure extends AuthState {
-  final Exception exception;
-  const AuthStateLogOutFaliure(this.exception);
+class AuthStateLoggedOut extends AuthState with EquatableMixin {
+  final Exception? exception;
+  const AuthStateLoggedOut({
+    required this.exception,
+    required bool isLoading,
+    String? loadingText,
+  }) : super(
+          isLoading: isLoading,
+          loadingtext: loadingText,
+        );
+
+  @override
+  List<Object?> get props => [exception, isLoading];
 }

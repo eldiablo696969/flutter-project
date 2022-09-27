@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ireview/services/cloud/cloud_note.dart';
-import 'package:ireview/services/crud/notes_service.dart';
 import 'package:ireview/utilities/dialogs/delete_dialog.dart';
 
 typedef NoteCallBack = void Function(CloudNote note);
@@ -39,7 +38,7 @@ class NotesListView extends StatelessWidget {
                 onDeleteNote(note);
               }
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         );
       },
