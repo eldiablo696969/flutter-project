@@ -7,7 +7,7 @@ import 'package:ireview/services/auth/bloc/auth_event.dart';
 import 'package:ireview/services/cloud/cloud_note.dart';
 import 'package:ireview/services/cloud/firebase_cloud_storage.dart';
 import 'package:ireview/utilities/dialogs/logout_dialog.dart';
-import 'package:ireview/views/notes_list_view.dart';
+import 'package:ireview/views/notes/notes_list_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotesView extends StatefulWidget {
@@ -28,40 +28,56 @@ class _NotesViewState extends State<NotesView> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Your Notes'),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
-              },
-              icon: const Icon(Icons.add),
-            ),
-            PopupMenuButton<MenuAction>(
-              onSelected: (value) async {
-                switch (value) {
-                  case MenuAction.logout:
-                    final shouldLogout = await showLogOutDialog(context);
-                    if (shouldLogout) {
-                      context.read<AuthBloc>().add(
-                            const AuthEventLogOut(),
-                          );
-                    }
-                }
-              },
-              itemBuilder: (context) {
-                return const [
-                  PopupMenuItem<MenuAction>(
-                    value: MenuAction.logout,
-                    child: Text('Log out'),
-                  ),
-                ];
-              },
-            )
-          ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.tealAccent,
+        foregroundColor: Colors.tealAccent,
+        title: const Text('My Notes'),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
         ),
+        elevation: 10.0,
+        actions: [
+          PopupMenuButton<MenuAction>(
+            icon: const Icon(
+              Icons.more_vert_outlined,
+              color: Colors.black,
+            ),
+            onSelected: (value) async {
+              switch (value) {
+                case MenuAction.logout:
+                  final shouldLogout = await showLogOutDialog(context);
+                  if (shouldLogout) {
+                    // ignore: use_build_context_synchronously
+                    context.read<AuthBloc>().add(
+                          const AuthEventLogOut(),
+                        );
+                  }
+              }
+            },
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('Log out'),
+                ),
+              ];
+            },
+          )
+        ],
+      ),
+      body: Scaffold(
         body: StreamBuilder(
           stream: _notesService.allNotes(ownerUserId: userId),
           builder: (context, snapshot) {
@@ -90,6 +106,19 @@ class _NotesViewState extends State<NotesView> {
                 return const CircularProgressIndicator();
             }
           },
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(
+          elevation: 10,
+          backgroundColor: Colors.tealAccent,
+          onPressed: () {
+            Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
+          },
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -43,40 +43,62 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         }
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          foregroundColor: Colors.tealAccent,
+          backgroundColor: Colors.tealAccent,
+          centerTitle: true,
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+          elevation: 10.0,
           title: const Text(
             'Forgot password',
           ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const Text('data'),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                autocorrect: false,
-                autofocus: true,
-                controller: _controller,
-                decoration: const InputDecoration(
-                    hintText: 'Enter email address here:'),
-              ),
-              TextButton(
-                onPressed: () {
-                  final email = _controller.text;
-                  context
-                      .read<AuthBloc>()
-                      .add(AuthEventForgotPassword(email: email));
-                },
-                child: const Text('Send Email'),
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventLogOut());
-                },
-                child: const Text('Back to Login'),
-              )
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Text('data'),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                  autofocus: true,
+                  controller: _controller,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter email address here:',
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 145, 147, 147)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                  ),
+                  style: const TextStyle(color: Colors.black),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  onPressed: () {
+                    final email = _controller.text;
+                    context
+                        .read<AuthBloc>()
+                        .add(AuthEventForgotPassword(email: email));
+                  },
+                  child: const Text('Send Email'),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  onPressed: () {
+                    context.read<AuthBloc>().add(const AuthEventLogOut());
+                  },
+                  child: const Text('Back to Login'),
+                )
+              ],
+            ),
           ),
         ),
       ),

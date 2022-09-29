@@ -91,19 +91,38 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('New Note'), actions: [
-        IconButton(
-          onPressed: () async {
-            final text = _textController.text;
-            if (_note == null || text.isEmpty) {
-              await showCannotShareEmptyNoteDialog(context);
-            } else {
-              Share.share(text);
-            }
-          },
-          icon: const Icon(Icons.share),
-        )
-      ]),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        foregroundColor: Colors.tealAccent,
+        backgroundColor: Colors.tealAccent,
+        title: const Text('New Note'),
+        iconTheme: const IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final text = _textController.text;
+              if (_note == null || text.isEmpty) {
+                await showCannotShareEmptyNoteDialog(context);
+              } else {
+                Share.share(text);
+              }
+            },
+            icon: const Icon(
+              Icons.share,
+              color: Colors.black,
+            ),
+          )
+        ],
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+        elevation: 10.0,
+      ),
       body: FutureBuilder(
         future: createOrGetExistingNote(context),
         builder: (context, snapshot) {
@@ -116,7 +135,15 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
                 maxLines: null,
                 decoration: const InputDecoration(
                   hintText: 'Start typing your note...',
+                  hintStyle:
+                      TextStyle(color: Color.fromARGB(255, 145, 147, 147)),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
+                style: const TextStyle(color: Colors.black, wordSpacing: 0),
+                autofocus: true,
               );
             default:
               return const CircularProgressIndicator();

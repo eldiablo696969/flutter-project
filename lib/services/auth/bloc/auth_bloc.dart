@@ -21,10 +21,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ));
       final email = event.email;
       if (email == null) {
-        return; //user wants to go to forgot password screen
+        return; // user just wants to go to forgot-password screen
       }
 
-      //user want to send forgot password email
+      // user wants to actually send a forgot-password email
       emit(const AuthStateForgotPassword(
         exception: null,
         hasSentEmail: false,
@@ -33,7 +33,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       bool didSendEmail;
       Exception? exception;
-
       try {
         await provider.sendPasswordReset(toEmail: email);
         didSendEmail = true;
@@ -97,6 +96,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         const AuthStateLoggedOut(
           exception: null,
           isLoading: true,
+          loadingText: 'Please wait while I log you in',
         ),
       );
       final email = event.email;
@@ -122,7 +122,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               isLoading: false,
             ),
           );
-          emit(AuthStateLoggedIn(user: user, isLoading: false));
+          emit(AuthStateLoggedIn(
+            user: user,
+            isLoading: false,
+          ));
         }
       } on Exception catch (e) {
         emit(
@@ -139,9 +142,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await provider.logOut();
         emit(
           const AuthStateLoggedOut(
-              exception: null,
-              isLoading: true,
-              loadingText: 'Please wait while we log you in'),
+            exception: null,
+            isLoading: false,
+          ),
         );
       } on Exception catch (e) {
         emit(

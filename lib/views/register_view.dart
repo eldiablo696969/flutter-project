@@ -48,53 +48,88 @@ class _RegisterViewState extends State<RegisterView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Register')),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          foregroundColor: Colors.tealAccent,
+          backgroundColor: Colors.tealAccent,
+          title: const Text('Register'),
+          centerTitle: true,
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+          elevation: 10.0,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Create An Account To Start Writing Your notes !'),
-              TextField(
-                controller: _email,
-                enableSuggestions: false,
-                autocorrect: false,
-                autofocus: true,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  hintText: 'Enter Email Here Please:',
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Create An Account To Start Writing Your notes !'),
+                TextField(
+                  controller: _email,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  autofocus: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Email Here Please:',
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 145, 147, 147)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                  ),
+                  style: const TextStyle(color: Colors.black),
                 ),
-              ),
-              TextField(
-                controller: _password,
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                    hintText: 'Enter Password Here Please:'),
-              ),
-              Center(
-                child: Column(
-                  children: [
-                    TextButton(
-                        onPressed: () async {
-                          final email = _email.text;
-                          final password = _password.text;
-                          context.read<AuthBloc>().add(AuthEventRegister(
-                                email,
-                                password,
-                              ));
-                        },
-                        child: const Text('Register')),
-                    TextButton(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(const AuthEventLogOut());
-                        },
-                        child: const Text('Already Registered? Login Here!'))
-                  ],
+                TextField(
+                  controller: _password,
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Password Here Please:',
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 145, 147, 147)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                  ),
+                  style: const TextStyle(color: Colors.black),
                 ),
-              ),
-            ],
+                Center(
+                  child: Column(
+                    children: [
+                      TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.black),
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            context.read<AuthBloc>().add(AuthEventRegister(
+                                  email,
+                                  password,
+                                ));
+                          },
+                          child: const Text('Register')),
+                      TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.black),
+                          onPressed: () {
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventLogOut());
+                          },
+                          child: const Text('Already Registered? Login Here!'))
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

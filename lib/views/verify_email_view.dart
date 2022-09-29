@@ -14,27 +14,43 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('verify your email address:')),
-      body: Column(children: [
-        const Text(
-            "we've sent you an Email Verification, Please open it to verify your account."),
-        const Text(
-            "if you haven't recieved a verification email yet, press the button below"),
-        TextButton(
-          onPressed: () {
-            context
-                .read<AuthBloc>()
-                .add(const AuthEventSendEmailVerification());
-          },
-          child: const Text('Send Email Verification'),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        foregroundColor: Colors.tealAccent,
+        backgroundColor: Colors.tealAccent,
+        title: const Text('verify your email address'),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
         ),
-        TextButton(
-          onPressed: () async {
-            context.read<AuthBloc>().add(const AuthEventLogOut());
-          },
-          child: const Text('Restart'),
-        ),
-      ]),
+        elevation: 10.0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          const Text(
+              "we've sent you an Email Verification, Please open it to verify your account."),
+          const Text(
+              "if you haven't recieved a verification email yet, press the button below"),
+          TextButton(
+            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            onPressed: () {
+              context
+                  .read<AuthBloc>()
+                  .add(const AuthEventSendEmailVerification());
+            },
+            child: const Text('Send Email Verification'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            onPressed: () async {
+              context.read<AuthBloc>().add(const AuthEventLogOut());
+            },
+            child: const Text('Restart'),
+          ),
+        ]),
+      ),
     );
   }
 }
