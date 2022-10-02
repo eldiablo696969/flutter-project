@@ -49,14 +49,14 @@ class _LoginViewState extends State<LoginView> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 63, 62, 62),
         appBar: AppBar(
-          foregroundColor: Colors.tealAccent,
-          backgroundColor: Colors.tealAccent,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.black,
           title: const Text('Login'),
           centerTitle: true,
           titleTextStyle: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
@@ -67,8 +67,12 @@ class _LoginViewState extends State<LoginView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text(
-                    'Please log in to your account in order to interact with and create notes!'),
+                const Center(
+                  child: Text(
+                    "Enter your email and password so you can start writing notes!",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 TextField(
                   controller: _email,
                   enableSuggestions: false,
@@ -83,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 TextField(
                   controller: _password,
@@ -99,10 +103,10 @@ class _LoginViewState extends State<LoginView> {
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
                   onPressed: () async {
                     final email = _email.text;
                     final password = _password.text;
@@ -116,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                   child: const Text('Login'),
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
                   onPressed: () {
                     context.read<AuthBloc>().add(
                           const AuthEventForgotPassword(),
@@ -125,7 +129,7 @@ class _LoginViewState extends State<LoginView> {
                   child: const Text('I forgot my password'),
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
                   onPressed: () {
                     context.read<AuthBloc>().add(
                           const AuthEventShouldRegister(),

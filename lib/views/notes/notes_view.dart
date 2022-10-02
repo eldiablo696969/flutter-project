@@ -36,23 +36,24 @@ class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.tealAccent,
-        foregroundColor: Colors.tealAccent,
-        title: const Text('My Notes'),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.black,
+        title: const Text('Notes'),
         centerTitle: true,
         titleTextStyle: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 25,
         ),
         elevation: 10.0,
         actions: [
           PopupMenuButton<MenuAction>(
+            elevation: 10.0,
+            color: Color.fromARGB(255, 21, 21, 21),
             icon: const Icon(
               Icons.more_vert_outlined,
-              color: Colors.black,
+              color: Colors.white,
             ),
             onSelected: (value) async {
               switch (value) {
@@ -71,6 +72,7 @@ class _NotesViewState extends State<NotesView> {
                 PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
                   child: Text('Log out'),
+                  textStyle: TextStyle(color: Colors.white),
                 ),
               ];
             },
@@ -109,13 +111,13 @@ class _NotesViewState extends State<NotesView> {
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 10,
-          backgroundColor: Colors.tealAccent,
+          backgroundColor: Colors.black,
           onPressed: () {
             Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
           },
           child: const Icon(
             Icons.add,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),

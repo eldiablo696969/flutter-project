@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:ireview/services/auth/bloc/auth_bloc.dart';
 import 'package:ireview/services/auth/bloc/auth_event.dart';
 
@@ -14,14 +15,14 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 41, 39, 39),
       appBar: AppBar(
-        foregroundColor: Colors.tealAccent,
-        backgroundColor: Colors.tealAccent,
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.black,
         title: const Text('verify your email address'),
         centerTitle: true,
         titleTextStyle: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 25,
         ),
@@ -29,12 +30,18 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          const Text(
-              "we've sent you an Email Verification, Please open it to verify your account."),
-          const Text(
-              "if you haven't recieved a verification email yet, press the button below"),
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.all(6.0),
+              child: Text(
+                '''Please check your email for the verification link we've sent you. 
+  (If you cant find the email, Please check you spam folder)''',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
           TextButton(
-            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            style: TextButton.styleFrom(foregroundColor: Colors.white),
             onPressed: () {
               context
                   .read<AuthBloc>()
@@ -43,11 +50,11 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
             child: const Text('Send Email Verification'),
           ),
           TextButton(
-            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            style: TextButton.styleFrom(foregroundColor: Colors.white),
             onPressed: () async {
               context.read<AuthBloc>().add(const AuthEventLogOut());
             },
-            child: const Text('Restart'),
+            child: const Text('Back To Login'),
           ),
         ]),
       ),

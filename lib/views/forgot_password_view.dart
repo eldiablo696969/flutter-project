@@ -43,13 +43,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 63, 62, 62),
         appBar: AppBar(
-          foregroundColor: Colors.tealAccent,
-          backgroundColor: Colors.tealAccent,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.black,
           centerTitle: true,
           titleTextStyle: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
@@ -63,7 +63,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Text('data'),
+                const Center(
+                  child: Text(
+                    'Oops looks like you forgot your pasword, lets get you back in action!',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
@@ -78,10 +83,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
                   onPressed: () {
                     final email = _controller.text;
                     context
@@ -91,7 +96,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   child: const Text('Send Email'),
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
                   onPressed: () {
                     context.read<AuthBloc>().add(const AuthEventLogOut());
                   },

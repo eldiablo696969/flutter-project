@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ireview/services/auth/auth_service.dart';
 import 'package:ireview/utilities/dialogs/cannot_share_empty_note_dialog.dart';
 import 'package:ireview/utilities/generics/get_arguments.dart';
@@ -17,7 +18,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   CloudNote? _note;
   late final FirebaseCloudStorage _notesService;
   late final TextEditingController _textController;
-
+  XFile? image;
   @override
   void initState() {
     _notesService = FirebaseCloudStorage();
@@ -91,13 +92,13 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 63, 62, 62),
       appBar: AppBar(
-        foregroundColor: Colors.tealAccent,
-        backgroundColor: Colors.tealAccent,
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.black,
         title: const Text('New Note'),
         iconTheme: const IconThemeData(
-          color: Colors.black, //change your color here
+          color: Colors.white, //change your color here
         ),
         actions: [
           IconButton(
@@ -111,13 +112,13 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
             },
             icon: const Icon(
               Icons.share,
-              color: Colors.black,
+              color: Colors.white,
             ),
           )
         ],
         centerTitle: true,
         titleTextStyle: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 25,
         ),
@@ -129,21 +130,25 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return TextField(
-                controller: _textController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: 'Start typing your note...',
-                  hintStyle:
-                      TextStyle(color: Color.fromARGB(255, 145, 147, 147)),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: TextField(
+                  controller: _textController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                    hintText: 'Start typing your note...',
+                    hintStyle: TextStyle(color: Colors.black),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 63, 62, 62))),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color.fromARGB(255, 63, 62, 62))),
+                  ),
+                  style: const TextStyle(color: Colors.white, wordSpacing: 0),
+                  autofocus: true,
                 ),
-                style: const TextStyle(color: Colors.black, wordSpacing: 0),
-                autofocus: true,
               );
             default:
               return const CircularProgressIndicator();
@@ -153,3 +158,75 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     );
   }
 }
+
+// class ImagePickerScreen extends StatefulWidget {
+//   const ImagePickerScreen({Key? key}) : super(key: key);
+
+//   @override
+//   State<ImagePickerScreen> createState() => _ImagePickerScreenState();
+// }
+
+// class _ImagePickerScreenState extends State<ImagePickerScreen> {
+//   XFile? image;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         title: const Text('gallery'),
+//       ),
+//       body: Column(
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               ElevatedButton.icon(
+//                 onPressed: () async {
+//                   final ImagePicker picker = ImagePicker();
+//                   final img =
+//                       await picker.pickImage(source: ImageSource.gallery);
+//                   setState(() {
+//                     image = img;
+//                   });
+//                 },
+//                 label: const Text('Choose Image'),
+//                 icon: const Icon(Icons.image),
+//               ),
+//               ElevatedButton.icon(
+//                 onPressed: () async {
+//                   final ImagePicker picker = ImagePicker();
+//                   final img =
+//                       await picker.pickImage(source: ImageSource.camera);
+//                   setState(() {
+//                     image = img;
+//                   });
+//                 },
+//                 label: const Text('Take Photo'),
+//                 icon: const Icon(Icons.camera_alt_outlined),
+//               ),
+//             ],
+//           ),
+//           if (image != null)
+//             Expanded(
+//               child: Column(
+//                 children: [
+//                   Expanded(child: Image.file(File(image!.path))),
+//                   ElevatedButton.icon(
+//                     onPressed: () {
+//                       setState(() {
+//                         image = null;
+//                       });
+//                     },
+//                     label: const Text('Remove Image'),
+//                     icon: const Icon(Icons.close),
+//                   )
+//                 ],
+//               ),
+//             )
+//           else
+//             const SizedBox(),
+//         ],
+//       ),
+//     );
+//   }
+// }

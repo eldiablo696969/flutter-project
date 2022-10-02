@@ -48,14 +48,14 @@ class _RegisterViewState extends State<RegisterView> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 63, 62, 62),
         appBar: AppBar(
-          foregroundColor: Colors.tealAccent,
-          backgroundColor: Colors.tealAccent,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.black,
           title: const Text('Register'),
           centerTitle: true,
           titleTextStyle: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
@@ -67,7 +67,12 @@ class _RegisterViewState extends State<RegisterView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Create An Account To Start Writing Your notes !'),
+                const Center(
+                  child: Text(
+                    'Create An Account To Start Writing Your notes!',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 TextField(
                   controller: _email,
                   enableSuggestions: false,
@@ -83,7 +88,7 @@ class _RegisterViewState extends State<RegisterView> {
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 TextField(
                   controller: _password,
@@ -99,14 +104,14 @@ class _RegisterViewState extends State<RegisterView> {
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 Center(
                   child: Column(
                     children: [
                       TextButton(
                           style: TextButton.styleFrom(
-                              foregroundColor: Colors.black),
+                              foregroundColor: Colors.white),
                           onPressed: () async {
                             final email = _email.text;
                             final password = _password.text;
@@ -118,7 +123,7 @@ class _RegisterViewState extends State<RegisterView> {
                           child: const Text('Register')),
                       TextButton(
                           style: TextButton.styleFrom(
-                              foregroundColor: Colors.black),
+                              foregroundColor: Colors.white),
                           onPressed: () {
                             context
                                 .read<AuthBloc>()
